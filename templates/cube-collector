@@ -1,9 +1,9 @@
-NAME="cube-evaluator"
-NODE_PREFIX="/usr"
-PIDFILE="/var/run/cube/evaluator.pid"
+NAME="cube-collector"
+NODE_PREFIX="%NODE_PREFIX%"
+PIDFILE="/var/run/cube/collector.pid"
 APP_DIR="/usr/bin"
 APP_BIN="env"
-APP_ARGS="node $NODE_PREFIX/lib/node_modules/cube/bin/evaluator.js"
+APP_ARGS="node $NODE_PREFIX/lib/node_modules/cube/bin/collector.js"
 USER="cube"
 GROUP="cube"
 

@@ -1,6 +1,10 @@
 #!/bin/bash
 
 #should be run as sudo
+if [ "$UID" -ne 0 ]
+  then echo "WARNING: it seems that the uninstaller has not be run as root. It may not work as intended."
+  exit
+fi
 
 
 # stopping daemons
