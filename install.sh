@@ -42,7 +42,7 @@ do
 done
 
 # display help
-if [ "$HELP" = true ]; then
+if [ "$SHOW_HELP" = true ]; then
 	cat << EOF
 
  Cube-daemons installer v${VERSION} by Luciano Mammino
