@@ -1,0 +1,53 @@
+NAME="cube-collector"
+NODE_PREFIX="/usr"
+PIDFILE="/var/run/cube/collector.pid"
+APP_DIR="/usr/bin"
+APP_BIN="env"
+APP_ARGS="node $NODE_PREFIX/lib/node_modules/cube/bin/collector.js"
+USER="cube"
+GROUP="cube"
+
+start() {
+	echo "Starting $NAME..."
+	start-stop-daemon --background --make-pidfile --pidfile $PIDFILE -o --chuid $USER:$GROUP --start --exec "$APP_DIR/$APP_BIN" -- $APP_ARGS
+}
+ 
+stop() {
+	echo "Stopping $NAME..."
+	start-stop-daemon -o --chuid $USER:$GROUP cube -K --pidfile $PIDFILE
+}
+ 
+status() {
+	PID=$(cat $PIDFILE)
+	if ! ps -p $PID > /dev/null 2>&1; then
+		echo "$NAME not running."
+	else
+		echo "$NAME running."
+	fi
+}
+ 
+case "$1" in
+    start)
+        start
+        ;;
+
+    stop)
+        stop
+        ;;
+
+    restart|reload|force-reload)
+        stop
+        start
+        ;;
+
+    status)
+        status
+        ;;
+
+    *)
+        echo "Usage: /etc/init.d/$NAME {start|stop|reload|force-reload|restart|status}"
+        exit 1
+
+esac
+
+exit 0
