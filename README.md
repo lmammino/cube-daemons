@@ -43,9 +43,9 @@ You can customize the installation process by passing few options to the install
 
  - `-h` or `--help`: Display the help
  - `-n` or `--no-cube`: Avoid installing cube (useful if you already installed it)
- - `-p` or `--node-prefix=VALUE`: specify a custom node prefix (default "${DEFAULT_NODE_PREFIX}")
- - `-c` or `--collector-config=VALUE`: specify a custom config file for the collector (default "${DEFAULT_COLLECTOR_CONFIG}")
- - `-e` or `--evaluator-config=VALUE`: specify a custom config file for the evaluator (default "${DEFAULT_EVALUATOR_CONFIG}")
+ - `-p` or `--node-prefix=VALUE`: specify a custom node prefix (default "/usr")
+ - `-c` or `--collector-config=VALUE`: specify a custom config file for the collector (default "config/collector-config.js")
+ - `-e` or `--evaluator-config=VALUE`: specify a custom config file for the evaluator (default "config/evaluator-config.js")
 
 
 ## Custom configuration files
