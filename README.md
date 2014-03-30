@@ -20,9 +20,9 @@ The hard work means:
 
 ## TODOs
 
- [ ] Tests
- [ ] Allow to use a customized node prefix
- [ ] Allow to provide specific configuration for the daemons
+ - [ ] Tests
+ - [ ] Allow to use a customized node prefix
+ - [ ] Allow to provide specific configuration for the daemons
 
 ## License
 
