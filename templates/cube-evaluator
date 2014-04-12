@@ -14,7 +14,7 @@ start() {
  
 stop() {
 	echo "Stopping $NAME..."
-	start-stop-daemon -o --chuid $USER:$GROUP cube -K --pidfile $PIDFILE
+	start-stop-daemon -o --chuid $USER:$GROUP -K --pidfile $PIDFILE
 }
  
 status() {
