@@ -9,6 +9,7 @@ GROUP="cube"
 
 start() {
 	echo "Starting $NAME..."
+	mkdir -p /var/run/cube
 	start-stop-daemon --background --make-pidfile --pidfile $PIDFILE -o --chuid $USER:$GROUP --start --exec "$APP_DIR/$APP_BIN" -- $APP_ARGS
 }
  
