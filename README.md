@@ -1,7 +1,7 @@
 cube-daemons
 ============
 
-This repository will help you to install/uninstall [cube](https://github.com/square/cube) as a system services on an linux machine using [System V init scripts](http://refspecs.linuxfoundation.org/LSB_3.1.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html).
+This repository will help you to install/uninstall [cube](https://github.com/square/cube) as a system services on a linux machine using [System V init scripts](http://refspecs.linuxfoundation.org/LSB_3.1.0/LSB-Core-generic/LSB-Core-generic/iniscrptact.html).
 
 By using this installer you will be able to start/stop the cube collector and the cube evaluator as services:
 
