@@ -1,21 +1,44 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          cube-evaluator
+# Required-Start:    networking
+# Required-Stop:     networking
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Run cube evaluator as daemon
+# Description:       Run cube evaluator as daemon
+#                    https://github.com/lmammino/cube-daemons
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
 NAME="cube-evaluator"
 NODE_PREFIX="%NODE_PREFIX%"
 PIDFILE="/var/run/cube/evaluator.pid"
 APP_DIR="/usr/bin"
 APP_BIN="env"
-APP_ARGS="node $NODE_PREFIX/lib/node_modules/cube/bin/evaluator.js"
+NODE_SCRIPT="$NODE_PREFIX/lib/node_modules/cube/bin/evaluator.js"
+APP_ARGS="node $NODE_SCRIPT"
 USER="cube"
 GROUP="cube"
 
 start() {
-	echo "Starting $NAME..."
+    log_daemon_msg "Starting $NAME..."
 	mkdir -p /var/run/cube
-	start-stop-daemon --background --make-pidfile --pidfile $PIDFILE -o --chuid $USER:$GROUP --start --exec "$APP_DIR/$APP_BIN" -- $APP_ARGS
+	if start-stop-daemon --background --make-pidfile --pidfile $PIDFILE -o --chuid $USER:$GROUP --start --exec "$APP_DIR/$APP_BIN" -- $APP_ARGS ; then
+        log_end_msg 0
+    else
+        log_end_msg 1
+    fi
 }
  
 stop() {
-	echo "Stopping $NAME..."
-	start-stop-daemon -o --chuid $USER:$GROUP -K --pidfile $PIDFILE
+	log_daemon_msg "Stopping $NAME..."
+	if start-stop-daemon -o --chuid $USER:$GROUP -K --pidfile $PIDFILE ; then
+        log_end_msg 0
+    else
+        log_end_msg 1
+    fi
 }
  
 status() {
@@ -38,6 +61,7 @@ case "$1" in
 
     restart|reload|force-reload)
         stop
+        sleep 2
         start
         ;;
 
@@ -47,7 +71,7 @@ case "$1" in
 
     *)
         echo "Usage: /etc/init.d/$NAME {start|stop|reload|force-reload|restart|status}"
-        exit 1
+        exit 2
 
 esac
 
