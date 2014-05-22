@@ -17,6 +17,7 @@ NODE_PREFIX="%NODE_PREFIX%"
 PIDFILE="/var/run/cube/collector.pid"
 APP_DIR="/usr/bin"
 APP_BIN="env"
+NODE_DIR="$NODE_PREFIX/lib/node_modules/cube"
 NODE_SCRIPT="$NODE_PREFIX/lib/node_modules/cube/bin/collector.js"
 APP_ARGS="node $NODE_SCRIPT"
 USER="cube"
@@ -25,7 +26,7 @@ GROUP="cube"
 start() {
 	log_daemon_msg "Starting $NAME..."
 	mkdir -p /var/run/cube
-	if start-stop-daemon --background --make-pidfile --pidfile $PIDFILE -o --chuid $USER:$GROUP --start --exec "$APP_DIR/$APP_BIN" -- $APP_ARGS ; then
+	if start-stop-daemon --background --chdir "$NODE_DIR" --make-pidfile --pidfile $PIDFILE -o --chuid $USER:$GROUP --start --exec "$APP_DIR/$APP_BIN" -- $APP_ARGS ; then
         log_end_msg 0
     else
         log_end_msg 1
