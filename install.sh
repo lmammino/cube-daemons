@@ -2,7 +2,7 @@
 
 
 #variables
-VERSION="1.0"
+VERSION="1.0.3"
 SOURCE=$(dirname ${BASH_SOURCE[0]})
 TEMPLATES="$SOURCE/templates";
 SHOW_HELP=false
@@ -95,7 +95,7 @@ Installing cube
 ---------------
 
 EOF
-npm install --global cube
+npm install --global lmammino/cube
 fi
 
 
